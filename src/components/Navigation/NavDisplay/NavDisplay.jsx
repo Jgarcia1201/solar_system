@@ -9,7 +9,7 @@ const NavDisplay = () => {
             <ScrollDiv>
                 {solarSystemData.map((item) => {
                     return (
-                        <div onClick={() => setPlanetInSpotlight(item.name)}>{item.name}</div>
+                        <div key={item.name} onClick={() => setPlanetInSpotlight(item.name)}>{item.name}</div>
                     )
                 })}
             </ScrollDiv>
