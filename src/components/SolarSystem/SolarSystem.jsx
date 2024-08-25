@@ -34,7 +34,7 @@ const SolarSystem = () => {
           const EARTH_YEAR = Math.PI * (1 / 60) * (1 / 60);
           objectsToRender.forEach((obj) => {
             const { system, orbitSpeed } = obj
-            system.rotation.y +=  EARTH_YEAR * orbitSpeed * 7
+            system.rotation.y +=  EARTH_YEAR * orbitSpeed
             if (planetInSpotlight) {
               scene.enableCameraControls();
               system.visible = planetInSpotlight === system.name
