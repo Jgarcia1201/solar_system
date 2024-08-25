@@ -7,9 +7,10 @@ const NavDisplay = () => {
     return (
         <NavDisplayWrapper>
             <ScrollDiv>
+                <div onClick={() => setPlanetInSpotlight(null)}>solar system</div>
                 {solarSystemData.map((item) => {
                     return (
-                        <div key={item.name} onClick={() => setPlanetInSpotlight(item.name)}>{item.name}</div>
+                        <div key={item.name} onClick={() => setPlanetInSpotlight(item.name === 'all' ? null : item.name)}>{item.name}</div>
                     )
                 })}
             </ScrollDiv>

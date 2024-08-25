@@ -1,6 +1,6 @@
 
 export const solarSystemData = [
-    { name: 'sun', radius: 8, position: 0, orbitSpeed: 0, textureFile: 'sun.jpg' },
+    { name: 'sun', radius: 7, position: 0, orbitSpeed: 0, textureFile: 'sun.jpg' },
     { name: 'mercury', radius: 2, position: 15, orbitSpeed: 5, textureFile: 'mercury.jpg' },
     { name: 'venus', radius: 3, position: 30, orbitSpeed: 3, textureFile: 'venus.webp' },
     { name: 'earth', radius: 4, position: 45, orbitSpeed: 2, textureFile: 'earth.jpg' },

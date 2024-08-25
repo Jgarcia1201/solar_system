@@ -1,6 +1,6 @@
 'use-client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Scene from '@/classes/Scene'
 import CelestialBody from '@/classes/CelestialBody'
 import * as THREE from 'three'
@@ -11,6 +11,7 @@ import { usePlanetSpotlightContext } from "@/contexts/PlanetSpotlightContext"
 const SolarSystem = () => {
     const [ scene ] = useState(new Scene())
     const { planetInSpotlight } = usePlanetSpotlightContext()
+    const animationRef = useRef(null)
 
     useEffect(() => {
         scene.initScene()
@@ -22,7 +23,7 @@ const SolarSystem = () => {
         solarSystemData.forEach((item) => {
           const celestialBodySystem = new THREE.Group()
           const position = planetInSpotlight ? 0 : item.position
-          const radius = planetInSpotlight ? item.radius * 7 : item.radius
+          const radius = planetInSpotlight ? item.radius * 8 : item.radius
           const celestialBody = new CelestialBody(item.name, radius, position, item.textureFile).getCelestialBody()
           celestialBodySystem.add(celestialBody)
           celestialBodySystem.name = item.name
@@ -43,9 +44,16 @@ const SolarSystem = () => {
               system.visible = true
             }
           })
-          requestAnimationFrame(animate);
+          animationRef.current = requestAnimationFrame(animate);
         }
         animate()
+
+        return () => {
+          if (animationRef.current) {
+              cancelAnimationFrame(animationRef.current);
+          }
+        };
+
       }, [planetInSpotlight, scene])
 
 
