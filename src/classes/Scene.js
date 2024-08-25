@@ -19,44 +19,44 @@ export default class Scene {
       1,
       1000
     );
-    this.camera.position.z = 128;
-
+    this.camera.position.z = 350;
+    this.camera.position.y = 100;
     this.scene = new THREE.Scene();
 
-    // const spaceTexture = new THREE.TextureLoader().load("space2.jpeg");
-    // this.scene.background = spaceTexture;
 
-    // specify a canvas which is already created in the HTML file and tagged by an id
-    // aliasing enabled
+    this.scene.background = new THREE.Color(0x000011);
+
+    const starCount = 1000;
+    const starGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(starCount * 3); // 3 coordinates per star
+
+    for (let i = 0; i < starCount; i++) {
+      positions[i * 3] = Math.random() * 1000 - 100; // x
+      positions[i * 3 + 1] = Math.random() * 500 - 100; // y
+      positions[i * 3 + 2] = Math.random() * 500 - 100; // z
+    }
+
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.6, opacity: 0.8, transparent: true });
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    this.scene.add(stars);
+
     this.renderer = new THREE.WebGLRenderer({
       canvas: document.getElementById("solar-system-canvas"),
       antialias: true,
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(this.renderer.domElement);
+    document.querySelector('#solar-system-wrapper').appendChild(this.renderer.domElement);
 
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls =  new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.enabled = false
 
-    // ambient light which is for the whole scene
-    // let ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-    // ambientLight.castShadow = false;
-    // this.scene.add(ambientLight);
-
-    // spot light which is illuminating the chart directly
-    // let spotLight = new THREE.SpotLight(0xffffff, 0.55);
-    // spotLight.castShadow = true;
-    // spotLight.position.set(0, 40, 10);
-    // this.scene.add(spotLight);
-
-    // if window resizes
     window.addEventListener("resize", () => this.onWindowResize(), false);
   }
 
   animate() {
-    // requestAnimationFrame(this.animate.bind(this));
     window.requestAnimationFrame(this.animate.bind(this));
     this.render();
-    // this.controls.update();
   }
 
   render() {
