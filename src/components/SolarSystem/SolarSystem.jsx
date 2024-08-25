@@ -5,7 +5,7 @@ import Scene from '@/classes/Scene'
 import CelestialBody from '@/classes/CelestialBody'
 import * as THREE from 'three'
 import { solarSystemData } from '@/constants/constants'
-import { SolarSystemCanvas, SolarSystemWrapper } from "./styled-components"
+import { SolarSystemCanvas } from "./styled-components"
 
 const SolarSystem = () => {
     useEffect(() => {
@@ -34,9 +34,7 @@ const SolarSystem = () => {
         animate()
       }, [])
     return (
-        <SolarSystemWrapper id='solar-system-wrapper'>
-            <SolarSystemCanvas id='solar-system-canvas'></SolarSystemCanvas>
-        </SolarSystemWrapper>
+          <SolarSystemCanvas id='solar-system-canvas'></SolarSystemCanvas>
     )
 }
 

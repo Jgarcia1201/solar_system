@@ -3,7 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
 
 export default class Scene {
-  constructor(fov = 36, camera, scene, stats, controls, renderer) {
+  constructor(fov = 38, camera, scene, stats, controls, renderer) {
     this.fov = fov;
     this.scene = scene;
     this.stats = stats;
@@ -17,7 +17,7 @@ export default class Scene {
       this.fov,
       window.innerWidth / window.innerHeight,
       1,
-      1000
+      9000
     );
     this.camera.position.z = 350;
     this.camera.position.y = 100;
@@ -26,14 +26,14 @@ export default class Scene {
 
     this.scene.background = new THREE.Color(0x000011);
 
-    const starCount = 1000;
+    const starCount = 10000;
     const starGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3); // 3 coordinates per star
 
     for (let i = 0; i < starCount; i++) {
-      positions[i * 3] = Math.random() * 1000 - 100; // x
-      positions[i * 3 + 1] = Math.random() * 500 - 100; // y
-      positions[i * 3 + 2] = Math.random() * 500 - 100; // z
+      positions[i * 3] =  500 - 100; // x
+      positions[i * 3 + 1] = 500 - 100; // y
+      positions[i * 3 + 2] = 500 - 100; // z
     }
 
     starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -49,7 +49,7 @@ export default class Scene {
     document.querySelector('#solar-system-wrapper').appendChild(this.renderer.domElement);
 
     this.controls =  new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enabled = false
+    this.controls.enabled = true
 
     window.addEventListener("resize", () => this.onWindowResize(), false);
   }
