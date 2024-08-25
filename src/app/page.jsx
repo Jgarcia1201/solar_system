@@ -7,9 +7,7 @@ import { useState } from 'react'
 import { PlanetSpotlightProvider } from '@/contexts/PlanetSpotlightContext'
 
 export default function Home() {
-  const [ navIsOpen, setNavIsOpen ] = useState(true)
-  const [ focusedPlanet, setFocusedPlanet ] = useState(null)
-
+  const [ navIsOpen, setNavIsOpen ] = useState(false)
 
   return (
     <PlanetSpotlightProvider>
@@ -20,7 +18,6 @@ export default function Home() {
           <Navigation
             onOpenClose={() => setNavIsOpen(!navIsOpen)}
             navIsOpen={navIsOpen}
-            focusedPlanet={focusedPlanet}
           />
 
       </div>
