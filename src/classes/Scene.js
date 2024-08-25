@@ -17,7 +17,7 @@ export default class Scene {
       this.fov,
       window.innerWidth / window.innerHeight,
       1,
-      9000
+      1000
     );
     this.camera.position.z = 350;
     this.camera.position.y = 100;
@@ -49,7 +49,7 @@ export default class Scene {
     document.querySelector('#solar-system-wrapper').appendChild(this.renderer.domElement);
 
     this.controls =  new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enabled = true
+    this.controls.enabled = false
 
     window.addEventListener("resize", () => this.onWindowResize(), false);
   }
@@ -67,5 +67,26 @@ export default class Scene {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  enableCameraControls() {
+    this.controls.enabled = true
+  }
+
+  disableCameraControls() {
+    this.controls.enabled = false
+  }
+}
+
+const celestialBodyLocations = {
+  sun: {
+    posX: 0,
+    posY: 100,
+    posZ: 50
+  },
+  mercury: {
+    posX: 0,
+    posY: 300,
+    posZ: 50
   }
 }

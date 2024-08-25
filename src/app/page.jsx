@@ -1,19 +1,30 @@
 'use client'
 
-import Scene from '@/classes/Scene'
-import CelestialBody from '@/classes/CelestialBody'
-import * as THREE from 'three'
-import { solarSystemData } from '@/constants/constants'
 import SolarSystem from '@/components/SolarSystem/SolarSystem'
-import { SolarSystemWrapper } from './styled-components'
+import { MenuWrapper, SolarSystemWrapper } from './styled-components'
+import Navigation from '@/components/Navigation/Navigation'
+import { useState } from 'react'
+import { PlanetSpotlightProvider } from '@/contexts/PlanetSpotlightContext'
 
 export default function Home() {
+  const [ navIsOpen, setNavIsOpen ] = useState(true)
+  const [ focusedPlanet, setFocusedPlanet ] = useState(null)
+
+
   return (
-    <div id='main-wrapper' style={styles}>
-        <SolarSystemWrapper id='solar-system-wrapper'>
-          <SolarSystem />
-        </SolarSystemWrapper>
-    </div>
+    <PlanetSpotlightProvider>
+      <div id='main-wrapper' style={styles}>
+          <SolarSystemWrapper id='solar-system-wrapper'>
+            <SolarSystem />
+          </SolarSystemWrapper>
+          <Navigation
+            onOpenClose={() => setNavIsOpen(!navIsOpen)}
+            navIsOpen={navIsOpen}
+            focusedPlanet={focusedPlanet}
+          />
+
+      </div>
+    </PlanetSpotlightProvider>
   )
 }
 

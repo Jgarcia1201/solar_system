@@ -2,17 +2,7 @@
 
 import styled from "styled-components"
 
-export const SolarSystemWrapper = styled.div`
-    width: 95%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 8px;
-`
-
-export const MenuWrapper = styled.div`
+export const NavWrapper = styled.div`
     width: 100%;
     min-height: 15%;
     border-top: 1px solid #F0E5A1;
