@@ -46,7 +46,7 @@ const SolarSystem = () => {
           requestAnimationFrame(animate);
         }
         animate()
-      }, [planetInSpotlight])
+      }, [planetInSpotlight, scene])
 
 
     return (
